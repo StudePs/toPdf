@@ -22,8 +22,8 @@ const altuHistory = async (instance, idContact, idAssistant) => {
         data: data
     }
     try {
-        const response = await axios(config)
-        return response.contacts.history
+        const response = await axios(config);
+        return response.data.contacts[0].history
     } catch (error) {
         console.log(error.message)        
     }
