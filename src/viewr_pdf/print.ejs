@@ -3,30 +3,33 @@
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link href="https://unpkg.com/tailwindcss/dist/tailwind.min.css" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">    
     <title>Historico de conversa Zenvia NLU</title>
 </head>
 <body>
-    <div style="display: flex; flex-direction: column; border: 1px solid red; max-width: 800px; margin: 0 auto;">
-        <h1 class="text-3x1 mb-8">Historico</h1>
+    <div style="max-width: 600px; margin: 0 auto;">
+        <img style="width: 40%; margin: 3px 150px;" src="https://www.renaissancecapital.com/logos/ZENV_logo.jpg" alt="logo">
+        <h4 style="text-align: center;">NLU</h4>
         <% if (timeLineMsg.length > 0) { %>
             <% timeLineMsg.forEach(msg => { %>
                 <% if (msg.sender == 'bot') { %>
                     <div style="display: flex; flex-direction:column; align-items: start">
-                        <div style="margin: 13px; padding: 10px; background-color:rgb(123, 192, 248); display: block; width: max-content; max-width: 600px; border-radius: 10px; justify-content: start;" >                                               
-                            <%- msg.msg %>                                                
+                        <div style="font-size: 11px; margin: 13px; padding: 10px; background-color:rgb(218, 238, 255); display: block; width: max-content; max-width: 400px; border-radius: 15px 15px 15px 0px; justify-content: start;" >                                               
+                            <%- msg.msg %>
+                            <div style="font-size: 7px; color: rgb(114, 114, 114); text-align: end;"> <%- msg.time %>  </div>                                               
                         </div>
                     </div>                    
                 <% } else { %>
                     <div style="display: flex; flex-direction:column; align-items: end" >
-                        <div style="margin: 13px; padding: 10px; background-color:rgb(176, 224, 191); width: max-content; max-width: 600px; border-radius: 10px; justify-content: end" >                        
-                            <%- msg.msg %>                     
+                        <div style="font-size: 11px; margin: 10px 15px 10px 130px; padding: 10px; background-color:rgb(211, 243, 221); width: max-content; max-width: 400px; border-radius: 15px 15px 0px 15px; justify-content: end;" >                        
+                            <%- msg.msg %>
+                            <div style="font-size: 7px; color: rgb(114, 114, 114); text-align: end;"> <%- msg.time %>  </div>                    
                         </div>
                     </div>                 
                 <% } %> 
             <% }) %>
         <% } %>
+        <p style="text-align: center;">Fim do Chat</p>
     </div>
         
 </body>
