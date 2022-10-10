@@ -23,7 +23,10 @@ const organizer = (history) => {
                 let aux = `<a href= '${eventTime.message.file.url}' target='_blanck'>${eventTime.message.file.url}</a>`;
                 timeLine.push(formatMsg('user', aux, eventTime.time))
             }
-        } else {
+        } else if ((eventTime.sender === 'agent')) {
+            timeLine.push(formatMsg('bot', "<span style= 'color: rgb(114, 114, 114); text-align: center;'>Fim de atendimento externo</span>", eventTime.time))
+        }
+         else {
             if (typeof(eventTime.message) == 'string' || Object.keys(eventTime.message)[0] == 'text') {
                 if (typeof(eventTime.message) == 'string') {
                      timeLine.push(formatMsg('bot', eventTime.message, eventTime.time))
@@ -32,10 +35,10 @@ const organizer = (history) => {
                 }
             } else {
                 eventTime.message.forEach(msg => {
-                    if (msg.default.type === 'text') {
+                    if (msg.default !== undefined && msg.default.type === 'text') {
                         timeLine.push(formatMsg('bot', msg.default.text, eventTime.time))
                     }
-                    else if (msg.default.type === 'select') {
+                    else if (msg.default !== undefined && msg.default.type === 'select') {
                         let aux = `${msg.default.payload.pick}<br> <ol>`;
                         msg.default.payload.options.forEach(option => {
                             aux =  aux + `<li>${option.title}</li>`
@@ -43,7 +46,7 @@ const organizer = (history) => {
                         aux = aux + ` </ol>`
                         timeLine.push(formatMsg('bot', aux, eventTime.time))
                     }
-                    else if (msg.default.type === 'quick_replies') {
+                    else if (msg.default !== undefined && msg.default.type === 'quick_replies') {
                         let aux = `${msg.default.payload.pick}<br> <ol>`;
                         msg.default.payload.replies.forEach(option => {
                             aux =  aux + `<li>${option.title}</li>`
