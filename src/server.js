@@ -28,7 +28,7 @@ app.post('/history', async (request, response) => {
             console.log(error.message)
             return response.send("Error reading file");
         }
-        return response.send(html);
+        // return response.send(html);
         let heightPage = (timeLineMsg.length/40)*34 > 11.25 ? (timeLineMsg.length/40)*30 : 11.25;
         pdf.create(html, {         
             width: "8.5in",
